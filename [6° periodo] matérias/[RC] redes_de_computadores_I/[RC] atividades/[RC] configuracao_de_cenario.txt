@@ -1,0 +1,197 @@
+Redes - configuração de cenário
+
+//Configurando IP do computador - VLAN-10 PC1
+
+IP - 192.168.10.1
+Máscara - 255.255.255.0 - ele já configura automaticamente
+Gateway - 192.168.10.254
+
+//Configurando IP do computador - VLAN-10 PC2
+
+IP - 192.168.10.2
+Máscara - 255.255.255.0 - ele já configura automaticamente
+Gateway - 192.168.10.254
+
+//Configurando IP do computador - VLAN-20 PC1
+
+IP - 192.168.20.1
+Máscara - 255.255.255.0 - ele já configura automaticamente
+Gateway - 192.168.20.254
+
+//Configurando IP do computador - VLAN-20 PC2
+
+IP - 192.168.20.2
+Máscara - 255.255.255.0 - ele já configura automaticamente
+Gateway - 192.168.20.254
+
+//Configurando IP do computador - VLAN-30 PC1
+
+IP - 192.168.30.1
+Máscara - 255.255.255.0 - ele já configura automaticamente
+Gateway - 192.168.30.254
+
+//Configurando IP do computador - VLAN-10 PC2
+
+IP setado - 192.168.30.2
+Máscara - 255.255.255.0 - ele já configura automaticamente
+Gateway - 192.168.30.254
+
+//Configurando IP do computador - VLAN-40 PC1
+
+IP - 192.168.40.1
+Máscara - 255.255.255.0 - ele já configura automaticamente
+Gateway - 192.168.40.254
+
+//Configurando IP do computador - VLAN-40 PC2
+
+IP - 192.168.40.2
+Máscara - 255.255.255.0 - ele já configura automaticamente 
+Gateway - 192.168.40.254
+
+//Switch 1 
+
+enable
+
+configure terminal 
+
+hostname Switch1
+
+vtp mode server - ele entra no modo servidor
+vtp domain UNITINS - coloca ele como se estivesse no domínio UNITINS
+vtp password SENHA - define a senha
+
+//Agora vamos nomear as VLANS
+
+vlan 10
+name VLAN-10
+
+vlan 20
+name VLAN-20
+
+vlan 30 
+name VLAN-30
+
+vlan 40 
+name VLAN-40
+
+end
+
+config t 
+
+//Agora vamos configurar as interfaces
+
+interface f 0/1
+switchport access vlan 10
+
+interface f 0/2
+switchport access vlan 20
+
+interface f 0/3
+switchport access vlan 30
+
+interface f 0/4
+switchport access vlan 40
+
+interface f 0/24
+switchport mode trunk
+
+interface range g 0/1 - 2 
+switchport mode trunk
+
+end
+
+//SW-2
+
+enable
+
+configure terminal
+
+hostname Switch2
+
+vtp mode cliente
+vtp domain UNITINS
+vtp password SENHA
+
+interface f 0/1
+switchport access vlan 10
+
+interface f 0/2
+switchport access vlan 20
+
+interface f 0/3
+switchport access vlan 30
+
+interface f 0/4
+switchport access vlan 40
+
+interface range g 0/1 - 2
+switchport mode trunk
+
+//esse switch não está conectado no roteador, então não configuramos a porta 24
+
+end 
+
+Agora vamos lá no roteador 
+
+//alias de interface - Um alias de interface é um nome alternativo atribuído a uma interface de rede para facilitar a identificação e a administração.
+
+// Router
+
+enable
+
+configure terminal 
+
+interface 0/0
+no shutdown
+
+interface f 0/0.10
+encapsulation dot1Q 10
+ip address 192.168.10.254 255.255.255.0
+
+interface f 0/0.20
+encapsulation dot1Q 20
+ip address 192.168.20.254 255.255.255.0
+
+interface f 0/0.30
+encapsulation dot1Q 30
+ip address 192.168.30.254 255.255.255.0
+
+interface f 0/0.40
+encapsulation dot1Q 40
+ip address 192.168.40.254 255.255.255.0
+
+end 
+
+//caso erre o comando usar o "no" para negar o comando
+
+Verificação da configuração 
+
+show mac-address-table
+
+show vlan
+
+show interface trunk
+
+show vtp status
+
+//ir lá no pc1
+
+Desktop-prompt de comandos 
+
+ipconfig 
+
+ping 192.168.10.254
+
+ping 192.168.10.0
+
+tracert 192.168.10.2
+
+//FIM
+
+
+
+
+
+
+
+

@@ -1,0 +1,16 @@
+Entregar: 
+
+O resumo deve conter, mas não se limitar aos seguintes tópicos:
+
+1. O que são redes virtuais (VLAN)?
+
+2. Quais os tipos de VLAN? O que as diferenciam?
+
+3. Casos de Uso de VLANs em Ambientes Corporativos.
+
+4. Para um sistema de rede sem fio de um campus universitário, onde centenas ou até mesmo milhares de alunos precisam ter acesso a uma rede sem fio, qual o melhor tipo de VLAN a utilizar? Justifique.
+
+5. Definição e aplicações do protocolo 802.1Q-2014. 
+
+
+Deadline: 05/03 às 12h.

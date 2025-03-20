@@ -1,0 +1,6 @@
+KUROSE, J; ROSS, K. Redes de Computadores e a internet: uma
+abordagem top-down. 6ª Edição. São Paulo: Pearson, 2014.
+
+Exercícios Cap. V. pág. 372. Seção 5.1, 5.2 e 5.3
+
+Deadline: 26/02 às 06:30h (ficará aberto até às 11:30h).
